@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amazon BSR to Sales Calculator for Books &amp; Kindle (2026)</title>
+<meta name="description" content="Free Amazon Best Sellers Rank to sales calculator for books and Kindle eBooks. Estimate daily and monthly sales, revenue and KDP royalty from any BSR.">
+<link rel="canonical" href="https://nkiro33.github.io/kdp-calculator/bsr/">
+<link rel="icon" href="../assets/favicon-32.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Amazon BSR to Sales Calculator">
+<meta property="og:description" content="Estimate how many copies a book or Kindle eBook sells from its Best Sellers Rank.">
+<meta property="og:url" content="https://nkiro33.github.io/kdp-calculator/bsr/">
+<meta property="og:image" content="https://nkiro33.github.io/kdp-calculator/assets/og-bsr.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Amazon BSR to Sales Calculator",
+      "url": "https://nkiro33.github.io/kdp-calculator/bsr/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Estimates daily and monthly sales of Amazon books and Kindle eBooks from their Best Sellers Rank."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How many books does a BSR of 100,000 sell?",
+          "acceptedAnswer": { "@type": "Answer", "text": "On Amazon.com a Kindle eBook at #100,000 in the Kindle Store sells roughly one copy a day. A print book at #100,000 in Books sells roughly one copy every one to two days." } },
+        { "@type": "Question", "name": "What is a good BSR for a book?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Under about #20,000 means roughly five or more sales a day. Under #100,000 means about a sale a day for a Kindle eBook, or one every other day for a print book. Above #500,000 a book sells only occasionally." } },
+        { "@type": "Question", "name": "Can I use a sub-category rank?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Use the main rank in Books or the Kindle Store. Sub-category ranks are relative to a few hundred or thousand titles and don't map to sales." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="top"><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/icon-128.png" alt="" width="26" height="26">KDP Calculators</a>
+  <nav><a href="../">Royalty</a><a href="./" aria-current="page">BSR to sales</a></nav>
+</div></div>
+
+<main class="wrap">
+<header class="hero">
+  <h1>Amazon BSR to Sales Calculator</h1>
+  <p class="lede">Enter a book's Best Sellers Rank to estimate how many copies it sells a day and a month, plus the revenue and KDP royalty that implies. Works for print books and Kindle eBooks on eight Amazon stores.</p>
+</header>
+
+<section class="card" id="calc" aria-label="BSR to sales calculator">
+  <div class="grid">
+    <label>Best Sellers Rank<input id="bsr" type="number" inputmode="numeric" min="1" step="1" value="25000"></label>
+    <label>Ranked in<select id="store">
+      <option value="books">Books (paperback, hardcover)</option>
+      <option value="kindle">Kindle Store (eBook)</option>
+    </select></label>
+    <label>Amazon store<select id="market">
+      <option value="1" data-sym="$">amazon.com</option>
+      <option value="0.3" data-sym="£">amazon.co.uk</option>
+      <option value="0.3" data-sym="€">amazon.de</option>
+      <option value="0.1" data-sym="€">amazon.fr</option>
+      <option value="0.08" data-sym="€">amazon.es</option>
+      <option value="0.08" data-sym="€">amazon.it</option>
+      <option value="0.12" data-sym="C$">amazon.ca</option>
+      <option value="0.08" data-sym="A$">amazon.com.au</option>
+    </select></label>
+    <label>Price (optional)<input id="price" type="number" inputmode="decimal" min="0" step="0.01" value="9.99"></label>
+    <label>Royalty per sale (optional)<input id="royalty" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 3.55"></label>
+  </div>
+  <div class="result" aria-live="polite">
+    <div class="big"><b id="daily">–</b><span>estimated sales per day</span></div>
+    <div class="facts">
+      <div><small>Sales per month</small><strong id="monthly">–</strong></div>
+      <div><small>Revenue per month</small><strong id="revenue">–</strong></div>
+      <div><small>Royalty per month</small><strong id="royaltyOut">–</strong></div>
+      <div><small>Verdict</small><strong id="verdict">–</strong></div>
+    </div>
+    <p class="note" id="tip" hidden></p>
+  </div>
+  <p style="margin:14px 0 0;font-size:14.5px;color:var(--muted)">Need the royalty per sale? <a href="../">Work it out with the KDP royalty calculator</a>.</p>
+</section>
+
+<section aria-labelledby="table">
+  <h2 id="table">BSR to sales chart (Amazon.com)</h2>
+  <p>Estimated copies sold at each rank. Print books sell about 55% as many copies as Kindle eBooks at the same rank, because the Books store moves fewer units.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>BSR</th><th>Kindle / day</th><th>Kindle / month</th><th>Print / day</th><th>Print / month</th></tr></thead>
+    <tbody>
+      <tr><td>#1</td><td>8,000</td><td>240,000</td><td>4,400</td><td>132,000</td></tr>
+      <tr><td>#10</td><td>3,000</td><td>90,000</td><td>1,650</td><td>49,500</td></tr>
+      <tr><td>#100</td><td>1,000</td><td>30,000</td><td>550</td><td>16,500</td></tr>
+      <tr><td>#500</td><td>247</td><td>7,400</td><td>136</td><td>4,070</td></tr>
+      <tr><td>#1,000</td><td>135</td><td>4,050</td><td>74</td><td>2,227</td></tr>
+      <tr><td>#2,000</td><td>76</td><td>2,279</td><td>42</td><td>1,254</td></tr>
+      <tr><td>#5,000</td><td>36</td><td>1,066</td><td>20</td><td>586</td></tr>
+      <tr><td>#10,000</td><td>20</td><td>600</td><td>11</td><td>330</td></tr>
+      <tr><td>#20,000</td><td>8.6</td><td>257</td><td>4.7</td><td>141</td></tr>
+      <tr><td>#50,000</td><td>2.8</td><td>84</td><td>1.5</td><td>46</td></tr>
+      <tr><td>#100,000</td><td>1.2</td><td>36</td><td>0.66</td><td>20</td></tr>
+      <tr><td>#200,000</td><td>0.70</td><td>21</td><td>0.38</td><td>12</td></tr>
+      <tr><td>#500,000</td><td>0.34</td><td>10</td><td>0.19</td><td>5.7</td></tr>
+      <tr><td>#1,000,000</td><td>0.20</td><td>6</td><td>0.11</td><td>3.3</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<aside class="cta">
+  <div>
+    <h2>Skip the copy-paste</h2>
+    <p>ShelfScout is a free browser extension that shows the BSR, estimated monthly sales and revenue under every book in Amazon search results. It also grades the niche A to F, so you can judge a keyword in seconds.</p>
+    <div class="btns">
+      <a class="btn primary" id="ctaMain" href="https://chromewebstore.google.com/detail/shelfscout-kdp-keyword-ni/bdookocpapjagghbckogahnjebljbjmi?utm_source=kdp-calculator&amp;utm_medium=bsr">Add to Chrome, free</a>
+      <a class="btn" id="ctaAlt" href="https://microsoftedge.microsoft.com/addons/detail/gmkkbbejkilehjecjeblnfohmjicmooi">Get it for Edge</a>
+    </div>
+  </div>
+  <img src="../assets/shelfscout-search.jpg" alt="ShelfScout showing BSR and estimated monthly sales under each book in Amazon search results" width="1000" height="625" loading="lazy">
+</aside>
+
+<article>
+  <h2>How BSR turns into sales</h2>
+  <p>Best Sellers Rank is Amazon's ranking of every product in a store by recent sales, updated roughly every hour. Amazon doesn't publish sales figures, but rank and sales follow a steady curve: the top ranks sell thousands a day, and sales fall off quickly further down.</p>
+  <p>This calculator fits that curve through commonly cited reference points for the US Kindle Store: about 1,000 sales a day at #100, 20 a day at #10,000 and 1.2 a day at #100,000. It interpolates on a log scale between them. The Books store uses the same curve × 0.55. Smaller Amazon stores are scaled down, for example amazon.co.uk and amazon.de × 0.3 and amazon.fr × 0.1.</p>
+
+  <h3>Getting a useful estimate</h3>
+  <ul>
+    <li><b>Use the main rank.</b> Take the rank in <i>Books</i> or <i>Kindle Store</i>, not a sub-category like "#3 in Gratitude Journals".</li>
+    <li><b>Check it on more than one day.</b> A single sale can lift an obscure book 500,000 places for a few hours. Look at the rank on several days, or use a few books, before trusting a niche.</li>
+    <li><b>Kindle Unlimited borrows count.</b> In the Kindle Store a KU borrow moves the rank like a sale, so a KU-heavy eBook may earn less than its rank suggests.</li>
+    <li><b>Treat it as a range.</b> Seasonality, launches and ads all shift the curve. Read the number as "about 5 a day", not "exactly 5.2".</li>
+  </ul>
+</article>
+
+<section aria-labelledby="faq">
+  <h2 id="faq">Questions</h2>
+  <details><summary>How many books does a BSR of 100,000 sell?</summary>
+    <p>On Amazon.com, a Kindle eBook at #100,000 sells roughly one copy a day. A print book at #100,000 in Books sells roughly one copy every one to two days.</p></details>
+  <details><summary>What is a good BSR for a book?</summary>
+    <p>Under about #20,000 means roughly five or more sales a day. Under #100,000 means about a sale a day for a Kindle eBook, or one every other day for a print book. Above #500,000 a book sells only occasionally.</p></details>
+  <details><summary>Where do I find a book's BSR?</summary>
+    <p>On the Amazon product page, scroll to <i>Product details</i> and look for "Best Sellers Rank". The first number is the one to use.</p></details>
+  <details><summary>How accurate is this?</summary>
+    <p>It's the same kind of estimate KDP research tools use. It's good for comparing books and niches. For a single book, treat it as a ballpark: real sales can easily be half or double the estimate.</p></details>
+</section>
+</main>
+
+<footer class="site"><div class="wrap">
+  <p>Sales figures are estimates. Not affiliated with or endorsed by Amazon.</p>
+  <p>Made by the developer of <a href="https://chromewebstore.google.com/detail/shelfscout-kdp-keyword-ni/bdookocpapjagghbckogahnjebljbjmi?utm_source=kdp-calculator&amp;utm_medium=footer">ShelfScout</a>. No tracking, no sign-up.</p>
+</div></footer>
+
+<script type="module" src="../assets/bsr-page.js"></script>
+</body>
+</html>

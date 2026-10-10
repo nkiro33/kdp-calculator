@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nkiro33.github.io/kdp-calculator/sitemap.xml

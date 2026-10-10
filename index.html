@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KDP Royalty Calculator 2026: Paperback, Hardcover &amp; Kindle</title>
+<meta name="description" content="Free Amazon KDP royalty calculator with 2026 printing costs. Paperback, hardcover and Kindle royalties, minimum list price, and the new $12.99 Kindle 70% limit.">
+<link rel="canonical" href="https://nkiro33.github.io/kdp-calculator/">
+<link rel="icon" href="assets/favicon-32.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KDP Royalty Calculator 2026">
+<meta property="og:description" content="Paperback, hardcover and Kindle royalties with Amazon's current printing costs and the $12.99 Kindle 70% band.">
+<meta property="og:url" content="https://nkiro33.github.io/kdp-calculator/">
+<meta property="og:image" content="https://nkiro33.github.io/kdp-calculator/assets/og-royalty.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "KDP Royalty Calculator",
+      "url": "https://nkiro33.github.io/kdp-calculator/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Calculates Amazon KDP royalties for paperback, hardcover and Kindle books using 2026 printing costs."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is the KDP paperback royalty rate in 2026?",
+          "acceptedAnswer": { "@type": "Answer", "text": "On Amazon.com, paperbacks listed at $9.99 or more earn 60% of the list price minus the printing cost. Paperbacks listed below $9.99 earn 50% minus the printing cost." } },
+        { "@type": "Question", "name": "What is the Kindle 70% royalty price range?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Since July 7, 2026 the 70% royalty option on Amazon.com covers list prices from $2.99 to $12.99. Before that the top of the band was $9.99. Outside that range eBooks earn 35%." } },
+        { "@type": "Question", "name": "How much does KDP charge to print a paperback?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For a black-ink, regular-trim paperback on Amazon.com, books of 24 to 108 pages cost $2.30 to print and books of 110 to 828 pages cost $1.00 plus $0.012 per page. Large trim and color ink cost more." } },
+        { "@type": "Question", "name": "How is the Kindle 70% royalty calculated?",
+          "acceptedAnswer": { "@type": "Answer", "text": "70% of the list price after subtracting a delivery cost of $0.15 per megabyte of file size on Amazon.com. A 1 MB eBook at $4.99 earns about $3.39 per sale." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="top"><div class="wrap">
+  <a class="brand" href="./"><img src="assets/icon-128.png" alt="" width="26" height="26">KDP Calculators</a>
+  <nav><a href="./" aria-current="page">Royalty</a><a href="bsr/">BSR to sales</a></nav>
+</div></div>
+
+<main class="wrap">
+<header class="hero">
+  <h1>KDP Royalty Calculator (2026)</h1>
+  <p class="lede">Work out what you earn per sale on Amazon KDP for paperbacks, hardcovers and Kindle eBooks. It uses Amazon.com's current printing costs and the new $12.99 top of the Kindle 70% band.</p>
+</header>
+
+<section class="card" id="calc" aria-label="Royalty calculator">
+  <div class="tabs" role="group" aria-label="Format">
+    <button type="button" data-fmt="paperback" aria-pressed="true">Paperback</button>
+    <button type="button" data-fmt="hardcover" aria-pressed="false">Hardcover</button>
+    <button type="button" data-fmt="kindle" aria-pressed="false">Kindle eBook</button>
+  </div>
+  <div class="grid">
+    <label>List price (USD)<input id="price" type="number" inputmode="decimal" step="0.01" min="0" value="9.99"></label>
+    <label data-for="print">Page count<input id="pages" type="number" inputmode="numeric" step="1" min="1" value="120"></label>
+    <label data-for="paperback">Ink<select id="ink">
+      <option value="black">Black ink</option>
+      <option value="standardColor">Standard color</option>
+      <option value="premiumColor">Premium color</option>
+    </select></label>
+    <label data-for="print">Trim size<select id="trim">
+      <option value="regular">Regular (up to 6.12 × 9 in)</option>
+      <option value="large">Large (wider or taller)</option>
+    </select></label>
+    <label data-for="kindle" hidden>File size (MB)<input id="mb" type="number" inputmode="decimal" step="0.1" min="0" value="1"></label>
+    <label>Copies sold per month<input id="copies" type="number" inputmode="numeric" step="1" min="0" value="30"></label>
+  </div>
+  <div class="result" aria-live="polite">
+    <div class="big"><b id="royalty">–</b><span>royalty per sale</span></div>
+    <div class="facts">
+      <div><small>Royalty rate</small><strong id="rate">–</strong></div>
+      <div><small id="costLabel">Printing cost</small><strong id="cost">–</strong></div>
+      <div><small>Minimum list price</small><strong id="minPrice">–</strong></div>
+      <div><small>Per month (<span id="copiesEcho">30</span> copies)</small><strong id="monthly">–</strong></div>
+    </div>
+    <p class="note" id="tip" hidden></p>
+  </div>
+  <p style="margin:14px 0 0;font-size:14.5px;color:var(--muted)">Not sure how many copies a book sells? <a href="bsr/">Estimate it from its Best Sellers Rank</a>.</p>
+</section>
+
+<section aria-labelledby="by-price">
+  <h2 id="by-price">Royalty at common prices</h2>
+  <p id="tableCaption">For your current settings:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>List price</th><th>Rate</th><th>Royalty per sale</th><th>Per month</th></tr></thead>
+    <tbody id="priceTable"></tbody>
+  </table></div>
+</section>
+
+<aside class="cta">
+  <div>
+    <h2>See these numbers on every Amazon book</h2>
+    <p>ShelfScout is a free browser extension that adds BSR, estimated monthly sales, revenue and KDP royalty to Amazon search results and book pages. It also grades whole niches A to F.</p>
+    <div class="btns">
+      <a class="btn primary" id="ctaMain" href="https://chromewebstore.google.com/detail/shelfscout-kdp-keyword-ni/bdookocpapjagghbckogahnjebljbjmi?utm_source=kdp-calculator&amp;utm_medium=royalty">Add to Chrome, free</a>
+      <a class="btn" id="ctaAlt" href="https://microsoftedge.microsoft.com/addons/detail/gmkkbbejkilehjecjeblnfohmjicmooi">Get it for Edge</a>
+    </div>
+  </div>
+  <img src="assets/shelfscout-search.jpg" alt="ShelfScout panel on an Amazon search showing a niche grade, median BSR and estimated sales for each book" width="1000" height="625" loading="lazy">
+</aside>
+
+<article>
+  <h2>How KDP royalties work in 2026</h2>
+
+  <h3>Paperback</h3>
+  <p>On Amazon.com you earn <b>60% of the list price</b> if the book is listed at <b>$9.99 or more</b>, and <b>50%</b> if it's listed below $9.99. Amazon then subtracts the printing cost:</p>
+  <p><code>royalty = list price × rate − printing cost</code></p>
+  <p>Printing cost depends on page count, ink and trim size. Large trim means wider than 6.12 in (155.5 mm) or taller than 9 in (228.6 mm).</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Ink</th><th>Pages</th><th>Regular trim</th><th>Large trim</th></tr></thead>
+    <tbody>
+      <tr><td>Black</td><td>24–108</td><td>$2.30</td><td>$2.84</td></tr>
+      <tr><td>Black</td><td>110–828</td><td>$1.00 + $0.012/page</td><td>$1.00 + $0.017/page</td></tr>
+      <tr><td>Standard color</td><td>72–600</td><td>$1.00 + $0.0255/page</td><td>$1.00 + $0.0402/page</td></tr>
+      <tr><td>Premium color</td><td>24–40</td><td>$3.60</td><td>$4.20</td></tr>
+      <tr><td>Premium color</td><td>42–828</td><td>$1.00 + $0.065/page</td><td>$1.00 + $0.080/page</td></tr>
+    </tbody>
+  </table></div>
+  <p>Example: a 120-page black-ink 6 × 9 paperback costs $1.00 + 120 × $0.012 = <b>$2.44</b> to print. At $9.99 it earns $9.99 × 60% − $2.44 = <b>$3.55</b> per sale. At $8.99 it earns only $8.99 × 50% − $2.44 = <b>$2.06</b>, so that dollar off the price costs you $1.49 a copy.</p>
+
+  <h3>Hardcover</h3>
+  <p>Hardcovers earn <b>60% of the list price minus printing</b>. Black-ink hardcovers cost $6.80 to print up to 108 pages (large trim $7.49), and $5.65 plus $0.012 per page from 110 to 550 pages (large trim $0.017 per page). A 300-page regular-trim hardcover costs $9.25 to print, so at $24.99 it earns <b>$5.74</b>.</p>
+
+  <h3>Kindle eBook</h3>
+  <p>Kindle books choose between two royalty options:</p>
+  <ul>
+    <li><b>70%</b> for list prices from <b>$2.99 to $12.99</b> on Amazon.com, after a delivery cost of $0.15 per MB. The top of this band was $9.99 until <b>July 7, 2026</b>, so older calculators still get $10–$12.99 books wrong.</li>
+    <li><b>35%</b> of the list price for anything outside that range, with no delivery cost.</li>
+  </ul>
+  <p><code>70% royalty = (list price − $0.15 × MB) × 0.70</code></p>
+  <p>A 1 MB eBook at $12.99 earns <b>$8.99</b> per sale, but the same book at $13.00 earns only <b>$4.55</b>. Mind the cliff. To qualify for 70%, the eBook also has to be priced at least 20% below the list price of your print edition. In Brazil, Japan, Mexico and India it also has to be enrolled in KDP Select.</p>
+</article>
+
+<section aria-labelledby="faq">
+  <h2 id="faq">Questions</h2>
+  <details><summary>Does this include Expanded Distribution?</summary>
+    <p>No. The calculator uses Amazon marketplace rates. Expanded Distribution to bookstores and libraries pays a lower rate.</p></details>
+  <details><summary>Why is my KDP dashboard royalty slightly different?</summary>
+    <p>Amazon rounds printing costs and charges eBook delivery on the exact file size. For other marketplaces it uses local prices, VAT and printing costs. Use this to compare prices and formats, then confirm the final figure on KDP's pricing page.</p></details>
+  <details><summary>Should I price my paperback at $9.99?</summary>
+    <p>Often, yes. At $9.99 the rate jumps from 50% to 60%, so going from $9.49 to $9.99 can add more than a dollar per copy. Check what competing books in your niche cost before you decide.</p></details>
+  <details><summary>Do Kindle Unlimited page reads count?</summary>
+    <p>Not in this calculator. KU pays per page read from a monthly fund, at roughly $0.004 to $0.005 per page, and that's separate from sales royalties.</p></details>
+</section>
+</main>
+
+<footer class="site"><div class="wrap">
+  <p>Rates are for Amazon.com, last checked October 2026. Not affiliated with or endorsed by Amazon.</p>
+  <p>Made by the developer of <a href="https://chromewebstore.google.com/detail/shelfscout-kdp-keyword-ni/bdookocpapjagghbckogahnjebljbjmi?utm_source=kdp-calculator&amp;utm_medium=footer">ShelfScout</a>. No tracking, no sign-up.</p>
+</div></footer>
+
+<script type="module" src="assets/royalty-page.js"></script>
+</body>
+</html>
